@@ -9,6 +9,7 @@ set_target_properties(IPFilter PROPERTIES
     CXX_STANDARD_REQUIRED ON
 )
 
+
 if (MSVC)
     target_compile_options(IPFilter PRIVATE
         /W4
