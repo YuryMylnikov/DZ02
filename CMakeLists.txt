@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 3.2)
 
 project(IPFilter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER)
 
+configure_file(version.h.in version.h)
+
 add_executable(IPFilter main.cpp)
 
 set_target_properties(IPFilter PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
 )
-
 
 if (MSVC)
     target_compile_options(IPFilter PRIVATE
