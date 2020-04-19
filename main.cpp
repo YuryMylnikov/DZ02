@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 
-#include <fstream>
 #include <iostream>
 #include <algorithm>
 
@@ -35,7 +34,9 @@ int main()
 
 	try
 	{
-		for (; !std::cin.eof();	std::getline(std::cin, strIPAddres))
+		for (std::getline(std::cin, strIPAddres); 
+            !std::cin.eof();	
+            std::getline(std::cin, strIPAddres))
 		{
 			szTabPos = strIPAddres.find("\t");
 
