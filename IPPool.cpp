@@ -5,7 +5,10 @@ bool CIPPool::Push(const std::string& strData)
 {
 	bool bResult{ false };
 
-	auto[bISValid, vuiBytes] = ValidateData(strData);
+    bool bISValid{ false };
+    std::vector<uint8_t> vuiBytes;
+
+	std::tie(bISValid, vuiBytes) = ValidateData(strData);
 
 	if (bISValid && vuiBytes.size() == 4)
 	{
