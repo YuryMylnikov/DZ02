@@ -8,7 +8,7 @@ add_executable(IPFilter main.cpp)
 add_library(IPPool IPPool.cpp)
 
 set_target_properties(IPFilter PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 11
     CXX_STANDARD_REQUIRED ON
 )
 
