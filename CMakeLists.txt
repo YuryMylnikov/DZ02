@@ -5,10 +5,19 @@ project(IPFilter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 configure_file(version.h.in version.h)
 
 add_executable(IPFilter main.cpp)
+add_library(IPPool IPPool.cpp)
 
 set_target_properties(IPFilter PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED ON
+)
+
+target_include_directories(IPPool
+    PRIVATE "${CMAKE_BINARY_DIR}"
+)
+
+target_link_libraries(IPFilter PRIVATE
+    IPPool
 )
 
 if (MSVC)
