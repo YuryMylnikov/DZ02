@@ -30,6 +30,6 @@ public:
 
 
 private:
-	std::tuple<bool, std::vector<uint8_t>> ValidateData(const std::string& strData) const;
+	std::vector<uint8_t> ValidateData(const std::string& strData) const;
 	void PrintPool(std::ostream& out, const std::vector<FilterType>& ipPool) const;
 };

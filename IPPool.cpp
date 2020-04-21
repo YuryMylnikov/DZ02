@@ -4,13 +4,11 @@
 bool CIPPool::Push(const std::string& strData)
 {
 	bool bResult{ false };
-
-    bool bISValid{ false };
     std::vector<uint8_t> vuiBytes;
 
-	std::tie(bISValid, vuiBytes) = ValidateData(strData);
+	vuiBytes = ValidateData(strData);
 
-	if (bISValid && vuiBytes.size() == 4)
+	if (vuiBytes.size() == 4)
 	{
 		bResult = true;
 
@@ -80,9 +78,8 @@ std::ostream& operator<<(std::ostream& out, const CIPPool& ipPool)
 }
 
 
-std::tuple<bool, std::vector<uint8_t>> CIPPool::ValidateData(const std::string& strData) const
+std::vector<uint8_t> CIPPool::ValidateData(const std::string& strData) const
 {
-	bool bIsValid{ false };
 	std::vector<uint8_t> vuiBytes;
 
 	std::smatch smResult;
@@ -90,7 +87,6 @@ std::tuple<bool, std::vector<uint8_t>> CIPPool::ValidateData(const std::string& 
 
 	if (std::regex_search(strData, smResult, rgTemplate) && smResult.size() == 5)
 	{
-		bIsValid = true;
 		int iTemp{ 0 };
 
 		for (size_t i = 1; i <= 4; ++i)
@@ -106,7 +102,7 @@ std::tuple<bool, std::vector<uint8_t>> CIPPool::ValidateData(const std::string& 
 		}
 	}
 
-	return std::make_tuple(bIsValid, vuiBytes);
+	return vuiBytes;
 }
 
 
