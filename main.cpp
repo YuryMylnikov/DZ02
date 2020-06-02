@@ -1,47 +1,55 @@
+#include <fstream>
+#include <iostream>
+
 #include "IPPool.h"
 
 
-#include <fstream>
+void PrintPool(const CIPPool& pool)
+{
+	for (const auto& it : pool)
+	{
+		std::cout << it.ToString() << std::endl;
+	}
+}
 
 
 int main()
 {
-	CIPPool ipPool;
-	std::string strInputData;
+	CIPPool pool{};
+	CIPPool pool_first{};
+	CIPPool pool_second{};
+	CIPPool pool_third{};
+	
+	//std::fstream in("in.tsv", std::ios_base::in);
 
-	/*std::fstream in("in.tsv", std::ios_base::in);
-	std::fstream out("out2.txt", std::ios_base::out);*/
-
-	try
+	//for (std::string strInput{}; std::getline(in, strInput);)
+	for (std::string strInput{}; std::getline(std::cin, strInput);)
 	{
-		/*for (std::getline(in, strInputData);
-			!in.eof();
-			std::getline(in, strInputData))*/
-		for (std::getline(std::cin, strInputData);
-			!std::cin.eof();
-			std::getline(std::cin, strInputData))
+		pool.Push(strInput);
+	}
+
+	for (const auto& it : pool)
+	{
+		if (it.filter(1))
 		{
-			try
-			{
-				ipPool.Push(strInputData);
-			}
-			catch (std::invalid_argument&)
-			{
-				std::cerr << "One of ip's bytes can not be converted to int.\n";
-			}
-			catch (std::exception& ex)
-			{
-				std::cerr << ex.what() << std::endl;
-			}
+			pool_first.Push(it);
+		}
+		else if (it.filter(46, 70))
+		{
+			pool_second.Push(it);
 		}
 
-		ipPool.ToFilter();
-		std::cout << ipPool;
+		if (it.filter_any(46))
+		{
+			pool_third.Push(it);
+		}
+
+		std::cout << it.ToString() << "\n";
 	}
-	catch (std::exception& ex)
-	{
-		std::cout << ex.what() << std::endl;
-	}
+
+	PrintPool(pool_first);
+	PrintPool(pool_second);
+	PrintPool(pool_third);
 
 	return 0;
 }
