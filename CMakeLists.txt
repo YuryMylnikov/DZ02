@@ -19,11 +19,11 @@ target_link_libraries(IPFilter PRIVATE
 )
 
 if (MSVC)
-    target_compile_options(IPFilter PRIVATE
+    target_compile_options(IPFilter IPPool PRIVATE
         /W4
     )
 else ()
-    target_compile_options(IPFilter PRIVATE
+    target_compile_options(IPFilter IPPool PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
