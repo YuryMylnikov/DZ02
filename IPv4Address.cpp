@@ -4,7 +4,7 @@
 #include "Tokenizer.h"
 
 
-CIPv4Address::CIPv4Address(const std::string& strCandidat) : m_auiIP{ 0, 0, 0, 0 }, m_bIsValid{ true }
+CIPv4Address::CIPv4Address(const std::string& strCandidat) : m_bIsValid{ true }, m_auiIP{ 0, 0, 0, 0 }
 {
 	int iByte{ 0 };
 	size_t szInd{ 0 };

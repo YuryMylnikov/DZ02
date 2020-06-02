@@ -12,7 +12,7 @@ class CTokenizer
 	std::string m_strString;
 
 public:
-	CTokenizer(const std::string& strData) : m_strString{ strData }, m_szBgn{ 0 }, m_szEnd{ 0 } {};
+	CTokenizer(const std::string& strData) : m_szBgn{ 0 }, m_szEnd{ 0 }, m_strString{ strData } {};
 
 	void operator=(std::string&& strRight);
 	size_t ReachedTheEnd() const;
