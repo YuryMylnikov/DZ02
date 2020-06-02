@@ -1,12 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-if($ENV{TRAVIS_BUILD_NUMBER})
-    set(VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
-else()
-    set(VERSION 0.0.0)
-endif()
-
-project(IPFilter VERSION ${VERSION})
+project(IPFilter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 add_executable(IPFilter main.cpp)
 add_library(IPPool IPPool.cpp IPv4Address.cpp Tokenizer.cpp)
