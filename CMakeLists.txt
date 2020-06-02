@@ -16,6 +16,10 @@ set_target_properties(IPFilter IPPool PROPERTIES
     CXX_STANDARD_REQUIRED ON
 )
 
+target_include_directories(IPPool
+    PRIVATE "${CMAKE_BINARY_DIR}"
+)
+
 target_link_libraries(IPFilter PRIVATE
     IPPool
 )
