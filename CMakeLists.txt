@@ -6,7 +6,7 @@ else()
     set(VERSION 0.0.0)
 endif()
 
-project(ip_filter VERSION ${VERSION})
+project(IPFilter VERSION ${VERSION})
 
 add_executable(IPFilter main.cpp)
 add_library(IPPool IPPool.cpp IPv4Address.cpp Tokenizer.cpp)
