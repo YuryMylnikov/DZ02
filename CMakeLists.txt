@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(IPFilter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+if($ENV{TRAVIS_BUILD_NUMBER})
+    set(VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+else()
+    set(VERSION 0.0.0)
+endif()
+
+project(IPFilter VERSION ${VERSION})
 
 add_executable(IPFilter main.cpp)
 add_library(IPPool IPPool.cpp IPv4Address.cpp Tokenizer.cpp)
@@ -19,11 +25,17 @@ target_link_libraries(IPFilter PRIVATE
 )
 
 if (MSVC)
-    target_compile_options(IPFilter IPPool PRIVATE
+    target_compile_options(IPFilter PRIVATE
+        /W4
+    )
+    target_compile_options(IPPool PRIVATE
         /W4
     )
 else ()
-    target_compile_options(IPFilter IPPool PRIVATE
+    target_compile_options(IPFilter PRIVATE
+        -Wall -Wextra -pedantic -Werror
+    )
+    target_compile_options(IPPool PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()
