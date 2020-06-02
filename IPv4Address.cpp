@@ -33,7 +33,7 @@ CIPv4Address::CIPv4Address(const std::string& strCandidat) : m_auiIP{ 0, 0, 0, 0
 
 		if (tok.ReachedTheEnd() != std::string::npos || szInd != Octets)
 		{
-			throw std::exception{ "Invalid ip format" };
+			throw std::logic_error{ "Invalid ip format" };
 		}
 	}
 	catch (const std::exception&)
